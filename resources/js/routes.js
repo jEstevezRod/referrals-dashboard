@@ -24,11 +24,19 @@ const routes = [
     {
         path: '/register',
         name: 'register',
-        component: Register,
+        component: Login,
         meta: {
             auth: false
         }
     },
+    // },    {
+    //     path: '/register',
+    //     name: 'register',
+    //     component: Register,
+    //     meta: {
+    //         auth: false
+    //     }
+    // },
     {
         path: '/login',
         name: 'login',

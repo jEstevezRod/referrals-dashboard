@@ -1,6 +1,7 @@
 <template>
     <v-container fluid>
-        <h1>Adding a new category</h1>
+        <p class="display-1 grey--text text--darken-3 mt-5">Adding a new category</p>
+
         <v-row>
             <v-col cols="8">
                 <v-row>
@@ -19,28 +20,35 @@
                         </v-select>
                     </v-col>
                 </v-row>
-                <v-row v-if="domainSelected">
-                    <v-col cols="12">
-                        <v-text-field
-                            filled
-                            v-model="category.name"
-                            label="Category name"
-                            required
-                        />
-                        <v-text-field
-                            filled
-                            v-model="category.img"
-                            label="Category image"
-                            required
-                            filled
-                        />
-                    </v-col>
-                </v-row>
-                <v-row v-if="domainSelected">
-                    <v-col>
-                        <v-btn @click="createCategory" color="success">Create</v-btn>
-                    </v-col>
-                </v-row>
+                <fade-transition>
+
+                    <v-row v-if="domainSelected">
+                        <v-col cols="12">
+                            <v-text-field
+                                filled
+                                v-model="category.name"
+                                label="Category name"
+                                required
+                            />
+                            <v-text-field
+                                filled
+                                v-model="category.img"
+                                label="Category image"
+                                required
+                                filled
+                            />
+                        </v-col>
+                    </v-row>
+                </fade-transition>
+                <fade-transition>
+
+                    <v-row v-if="domainSelected">
+                        <v-col>
+                            <v-btn @click="createCategory" color="success">Create</v-btn>
+                        </v-col>
+                    </v-row>
+                </fade-transition>
+
             </v-col>
             <v-col cols="4" v-if="domainSelected">
                 <h3>List of categories for this domain: </h3>
@@ -77,7 +85,7 @@
             domains() {
                 return this.$store.getters.domains
             },
-            domainSelect(){
+            domainSelect() {
                 return (this.$store.getters.domains.filter(x => x.id == this.domainSelected.id))[0];
             }
         },

@@ -1,9 +1,16 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
 // Variables
 @import 'variables';
 
 // Vuetify
 @import '~vuetify/dist/vuetify.min.css';
+
+.v-application {
+    font-family: $body-font-family, sans-serif !important;
+    .title { // To pin point specific classes of some components
+        font-family: $body-font-family, sans-serif !important;
+    }
+}
 

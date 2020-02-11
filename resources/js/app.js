@@ -9,13 +9,20 @@ import vuetify from "./plugins/vuetify";
 import auth from './auth.js'
 import router from './routes.js'
 import store from './store'
+import VueClipboard from 'vue-clipboard2'
+import VueLocalStorage from 'vue-localstorage'
+import Transitions from 'vue2-transitions'
+Vue.use(Transitions)
 
 window.Vue = Vue;
 
 // Set Vue router
 Vue.router = router;
 Vue.use(VueRouter);
-
+Vue.use(VueClipboard);
+Vue.use(VueLocalStorage, {
+    name: 'ls'
+});
 // Set Vue authentication
 Vue.use(VueAxios, axios);
 axios.defaults.baseURL = `${process.env.MIX_APP_URL}/api`;

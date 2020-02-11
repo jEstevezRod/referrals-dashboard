@@ -10,7 +10,54 @@
                 </v-radio-group>
             </v-col>
             <v-col cols="2">
-                <v-btn  class="customBtn" @click="exportJson">Export JSON</v-btn>
+                <v-btn :disabled="!domainSelected" color="red lighten-1" dark @click="exportJson">Export JSON</v-btn>
+
+            </v-col>
+        </v-row>
+        <v-row v-if="data" justify="center">
+            <v-col cols="10" sm="8" md="6">
+                <v-sheet
+                    class="pa-12"
+                    color="grey lighten-3"
+                >
+                    <v-row>
+                        <v-col class="text-center">
+                            <v-btn color="primary" type="button"
+                                   v-clipboard:copy="data"
+                                   v-clipboard:success="onCopy"
+                                   v-clipboard:error="onError">Copy!
+                            </v-btn>
+                            <v-switch v-model="prettyView" inset :label="`Pretty view: ${prettyView.toString()}`"/>
+
+
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col v-if="!prettyView">
+                            {{data}}
+                        </v-col>
+                        <v-col v-if="prettyView">
+                            <code>
+                                {{data}}
+                            </code>
+
+                        </v-col>
+                    </v-row>
+                    <v-snackbar
+                        v-model="snackbar"
+                        center
+                        top
+                        color="green lighten-1"
+                    >
+                        <v-btn
+                            color="white"
+                            text
+                            @click="snackbar = false"
+                        >
+                            Copied correctly!
+                        </v-btn>
+                    </v-snackbar>
+                </v-sheet>
             </v-col>
         </v-row>
     </v-container>
@@ -29,7 +76,11 @@
         },
         data() {
             return {
-                domainSelected: ''
+                domainSelected: '',
+                data: '',
+                snackbar: false,
+                timeout: 3000,
+                prettyView: true
             }
         },
         methods: {
@@ -38,19 +89,29 @@
             },
             exportJson() {
                 this.$store.dispatch('exportJson', this.domainSelected)
+                    .then(res => this.data = JSON.stringify(JSON.parse(res), null, 2))
+            },
+            onCopy: function (e) {
+                this.snackbar = true
+            },
+            onError: function (e) {
+                alert('Failed to copy texts')
             }
         }
     }
 </script>
 
 <style scoped>
-    .customBtn {
-        text-decoration: none;
-        background-color: tomato;
-        padding: 20px 30px;
-        border-radius: 5px;
-        color: white !important;
-        border: 1px solid #f5adad;
+
+    .v-application code {
+        background-color: transparent;
+        color: #bd4147;
+        box-shadow: none;
+    }
+
+
+    .theme--dark.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+        background-color: hsla(0, 72%, 59%, 0.27)!important;
     }
 
 </style>

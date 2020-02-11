@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('category_name');
             $table->integer('cat_id')->unsigned();
             $table->string('amazon_url');
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
         Schema::table('products', function (Blueprint $table) {

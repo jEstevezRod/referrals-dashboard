@@ -58,8 +58,13 @@
 
     #app {
         background-color: #f5f5f5;
+        font-family: "Raleway", sans-serif !important;
     }
 
+    .v-application .display-1, .v-application .display-2, .v-application .headline {
+        font-family: "Raleway", sans-serif !important;
+
+    }
 
 
 </style>

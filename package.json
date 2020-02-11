@@ -28,7 +28,10 @@
         "@websanova/vue-auth": "^2.21.15-beta",
         "es6-promise": "^4.2.8",
         "vue-axios": "^2.1.5",
+        "vue-clipboard2": "^0.3.1",
+        "vue-localstorage": "^0.6.2",
         "vue-router": "^3.1.5",
+        "vue2-transitions": "^0.3.0",
         "vuetify": "^2.2.11"
     }
 }

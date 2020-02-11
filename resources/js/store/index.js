@@ -54,7 +54,7 @@ export default new Vuex.Store({
         createProduct({dispatch}, payload) {
             return new Promise(((resolve, reject) => {
                 axios.post('createProduct', payload).then(response => {
-                    resolve();
+                    resolve(response.data.product);
                 })
             }))
         },
@@ -71,6 +71,7 @@ export default new Vuex.Store({
         exportJson({commit}, payload) {
             return new Promise(((resolve, reject) => {
                 axios.get('downloadJson/' + payload).then(res => {
+                    resolve(res.data)
                 })
             }))
         }

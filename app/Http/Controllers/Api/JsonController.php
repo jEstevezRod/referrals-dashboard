@@ -37,13 +37,15 @@ class JsonController extends Controller
             }
         }
         $data = json_encode($output);
-        $filename = 'products.json';
-        Storage::disk('public')->put("/" . $filename, $data);
-        $file = storage_path() . "/app/public/" . $filename;
-        $headers = array(
-            'Content-Type:' => 'application/json'
-        );
+//        $filename = 'products.json';
+//        Storage::disk('public')->put("/" . $filename, $data);
+//        $file = storage_path() . "/app/public/" . $filename;
+//        $headers = array(
+//            'Content-Type:' => 'application/json'
+//        );
 
-        return response()->download($file, $filename);
+
+
+        return response()->json($data);
     }
 }

@@ -1,6 +1,7 @@
 <template>
     <v-container fluid>
-        <h1>Adding a new domain</h1>
+        <p class="display-1 grey--text text--darken-3 mt-5">Adding a new domain</p>
+
         <v-row>
             <v-col cols="8">
                 <v-row>
@@ -28,14 +29,15 @@
 
                 </v-row>
             </v-col>
-            <v-col cols="4"  >
+            <v-col cols="4">
                 <h3>List of domains</h3>
                 <hr>
                 <v-list id="categoriesDomain">
                     <v-list-item v-for="domain of domains" :key="domain.id">
                         <v-list-item-content>
                             <v-list-item-title v-text="domain.name"/>
-                            <v-list-item-subtitle v-text="domain.url"/>
+                            <v-list-item-subtitle><a :href="domain.url" target="_blank">{{domain.url}}</a>
+                            </v-list-item-subtitle>
                         </v-list-item-content>
                         <v-list-item-action>
                             <v-btn icon @click="deleteDomain(domain.id)">
@@ -73,7 +75,6 @@
             },
 
             deleteDomain(id) {
-                console.log(id)
                 this.$store.dispatch('deleteDomain', id)
             }
         }

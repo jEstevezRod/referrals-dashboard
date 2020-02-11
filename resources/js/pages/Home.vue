@@ -1,22 +1,22 @@
 <template>
-    <div class="container">
-        <div class="card card-default">
-            <div class="card-header">Bienvenue</div>
-            <div class="card-body">
-                <p>
-                    American Main Barbary Coast scuttle hardtack spanker fire ship grapple jack code of conduct port.
-                    Port red ensign Shiver me timbers provost salmagundi bring a spring upon her cable pillage cog
-                    crow's nest lateen sail. Barbary Coast quarterdeck lass coffer keel hulk mizzen me square-rigged
-                    loot.
-                </p>
-                <p>
-                    Yardarm starboard keelhaul list schooner prow booty cackle fruit gabion topmast. Plunder shrouds
-                    Nelsons folly jack Arr parley warp grog blossom ballast pressgang. Knave crack Jennys tea cup
-                    flogging log man-of-war hearties killick long clothes six pounders hulk.
-                </p>
-            </div>
-        </div>
-    </div>
+    <v-container>
+        <v-row justify="center">
+            <v-col class="d-flex justify-center">
+                <v-img contain src="/storage/bg.png" max-width="80%" alt="" >
+                    <div class="fill-height bottom-gradient"></div>
+                    <template v-slot:placeholder>
+                        <v-row
+                            class="fill-height ma-0"
+                            align="center"
+                            justify="center"
+                        >
+                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                        </v-row>
+                    </template>
+                </v-img>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <script>
@@ -26,5 +26,7 @@
 </script>
 
 <style scoped>
-
+    .bottom-gradient {
+        background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 72px);
+    }
 </style>

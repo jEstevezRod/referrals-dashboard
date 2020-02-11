@@ -1,13 +1,13 @@
 <template>
     <v-app-bar
-        color="primary"
+        color="indigo darken-1"
         dark
         elevation="0"
     >
         <v-app-bar-nav-icon/>
-
-        <v-toolbar-title>Referrals Dashboard</v-toolbar-title>
-
+            <v-toolbar-title>
+                Referrals Dashboard
+            </v-toolbar-title>
         <v-spacer></v-spacer>
 
         <v-toolbar-items>
@@ -44,10 +44,10 @@
                 routes: {
                     // UNLOGGED
                     unlogged: [
-                        {
-                            name: 'Register',
-                            path: 'register'
-                        },
+                        // {
+                        //     name: 'Register',
+                        //     path: 'register'
+                        // },
                         {
                             name: 'Login',
                             path: 'login'
@@ -67,12 +67,12 @@
                             path: 'admin.dashboard'
                         },
                         {
-                            name: 'Export',
-                            path: 'export'
-                        },
-                        {
                             name: 'Content',
                             path: 'content'
+                        },
+                        {
+                            name: 'Export',
+                            path: 'export'
                         }
                     ]
                 }

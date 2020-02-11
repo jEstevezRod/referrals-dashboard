@@ -28,7 +28,7 @@ class ProductController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'domain' => $product
+            'product' => $product
         ], 201);
     }
 
@@ -44,7 +44,8 @@ class ProductController extends Controller
             $count++;
             $localCategory = Category::with('products')->find($category->id);
             $products = $localCategory->products;
-            $output[$index]['name'] = $localCategory->name;
+            $numberProducts = count($products);
+            $output[$index]['name'] = $localCategory->name . ' ' . '( ' . $numberProducts . ' )';
             $output[$index]['id'] = $count;
             foreach ($products as $i => $product) {
                 $count++;

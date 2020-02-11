@@ -11,7 +11,8 @@ window._ = require('lodash');
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
-} catch (e) {}
+} catch (e) {
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -23,6 +24,17 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.defaults.baseURL = REFERRALS_CONFIG.API_URL;
+
+
+window.logI = function (t) {
+    console.log("%c Info message: " + t, "color:#fff; background-color: #6097D0; border-radius: 4px; padding: 4px;line-height: 14px;font-size:12px")
+};
+window.logE = function (t) {
+    console.log("%c Error message: " + t, "color:#fff; background-color: tomato; border-radius: 4px; padding: 4px;line-height: 14px;font-size:12px")
+};
+window.logW = function (t) {
+    console.log("%c Warning message: " + t, "color: black; background-color: #ffdb9a; border-radius: 4px; padding: 4px;line-height: 14px;font-size:12px")
+};
 
 
 
