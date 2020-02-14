@@ -18,15 +18,15 @@
             >
                 <v-btn text v-if="!$auth.check()" v-for="(route, key) in routes.unlogged"
                        v-bind:key="route.path"
-                       :to="{ name : route.path }" :key="key">{{route.name}}
+                       :to="{ name : route.path }" exact :key="key">{{route.name}}
                 </v-btn>
                 <v-btn text v-if="$auth.check(1)" v-for="(route, key) in routes.user"
                        v-bind:key="route.path"
-                       :to="{ name : route.path }" :key="key">{{route.name}}
+                       :to="{ name : route.path }" exact :key="key">{{route.name}}
                 </v-btn>
                 <v-btn text v-if="$auth.check(2)" v-for="(route, key) in routes.admin"
                        v-bind:key="route.path"
-                       :to="{ name : route.path }" :key="key">{{route.name}}
+                       :to="{ name : route.path }" exact :key="key">{{route.name}}
                 </v-btn>
                 <v-btn text v-if="$auth.check()" @click.prevent="$auth.logout()">Logout</v-btn>
             </v-flex>
@@ -62,6 +62,10 @@
                     ],
                     // LOGGED ADMIN
                     admin: [
+                        {
+                            name: 'Homepage',
+                            path: 'home'
+                        },
                         {
                             name: 'Dashboard',
                             path: 'admin.dashboard'

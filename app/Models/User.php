@@ -36,4 +36,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function routeNotificationForSlack() {
+        return env('LOG_SLACK_WEBHOOK_URL');
+    }
 }

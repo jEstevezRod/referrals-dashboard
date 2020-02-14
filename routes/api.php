@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\DomainController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\JsonController;
-
+use App\Http\Controllers\Api\SitemapController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -49,6 +49,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('createProduct', [ProductController::class, 'createProduct']);
     Route::get('loadTree/{id}', [ProductController::class, 'loadTree']);
 
+    Route::post('generateSitemap', [SitemapController::class, 'generateSitemap']);
 });
 
 Route::get('downloadJson/{id}', [JsonController::class, 'download']);
+
+Route::get('getToken', [JsonController::class, 'getToken']);

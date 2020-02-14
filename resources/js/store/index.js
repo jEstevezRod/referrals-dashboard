@@ -8,7 +8,11 @@ export default new Vuex.Store({
     state: {
         // DOMAINS STATE
         domainsState: [],
-        treeState: []
+        treeState: [],
+        // Testing Token
+        zeitToken: 'oTlASnpNrai7gi58yjrgvff1',
+        zeitUser: '',
+        zeitProjects: ''
     },
     actions: {
         // DOMAINS ACTIONS
@@ -74,6 +78,15 @@ export default new Vuex.Store({
                     resolve(res.data)
                 })
             }))
+        },
+        // SITEMAP
+
+        generateSitemap({commit}, payload) {
+            return new Promise(((resolve, reject) => {
+                axios.post('generateSitemap', payload).then( response => {
+                    resolve(response.data)
+                })
+            }))
         }
 
     },
@@ -100,12 +113,30 @@ export default new Vuex.Store({
         // PRODUCTS MUTATIONS
         setTree(state, tree) {
             state.treeState = tree;
+        },
+
+        // ZEIT INTEGRATION
+
+        setToken(state, token) {
+            state.zeitToken = token
+        },
+        setUser(state, payload) {
+            state.zeitUser = payload;
+        },
+        setProjects(state, payload) {
+            state.zeitProjects = payload;
         }
     },
     getters: {
         // DOMAINS GETTERS
         domains: state => state.domainsState,
 
-        tree: state => state.treeState
+        tree: state => state.treeState,
+
+        zeitToken: state => state.zeitToken,
+
+        zeitUser: state => state.zeitUser,
+
+        zeitProjects: state => state.zeitProjects,
     }
 })

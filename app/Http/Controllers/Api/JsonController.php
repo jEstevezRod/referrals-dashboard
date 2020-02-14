@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Domain;
+use App\Models\User;
+use App\Notifications\DomainCreated;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -34,6 +38,7 @@ class JsonController extends Controller
                 $output[$index]['products'][$i]['category_name'] = $product->category_name;
                 $output[$index]['products'][$i]['amazon_url'] = $product->amazon_url;
                 $output[$index]['products'][$i]['cat_id'] = $product->cat_id;
+                $output[$index]['products'][$i]['description'] = $product->description;
             }
         }
         $data = json_encode($output);
@@ -44,8 +49,13 @@ class JsonController extends Controller
 //            'Content-Type:' => 'application/json'
 //        );
 
-
+        Log::channel('slack')->notice('New content has been generated for domain: ' . $domain['name']);
 
         return response()->json($data);
+    }
+
+
+    function getToken(Request $request) {
+        return response()->json($request);
     }
 }
