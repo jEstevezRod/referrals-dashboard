@@ -50,6 +50,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('loadTree/{id}', [ProductController::class, 'loadTree']);
 
     Route::post('generateSitemap', [SitemapController::class, 'generateSitemap']);
+
+    Route::post('updateDomain', [DomainController::class, 'updateDomain']);
 });
 
 Route::get('downloadJson/{id}', [JsonController::class, 'download']);

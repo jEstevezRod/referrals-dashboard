@@ -6,17 +6,13 @@
             </v-tab>
         </v-tabs>
         <router-view> Select one tab to start working :) </router-view>
-        <!--        <div>-->
-        <!--            <user-list/>-->
-        <!--        </div>-->
+
     </div>
 </template>
 <script>
-    import userList from '../components/user-list'
 
     export default {
         name: "admin.dashboard",
-        components: {userList},
         data() {
             return {
                 activeTab: '/admin/product',

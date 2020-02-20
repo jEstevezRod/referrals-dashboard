@@ -17,6 +17,12 @@ class CreateDomainTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('url');
+            $table->string('homeHeaderTitle')->nullable();
+            $table->string('homeHeroImage')->nullable();
+            $table->string('websiteIcon')->nullable();
+            $table->text('homeExplanation')->nullable();
+            $table->text('categoriesExplanation')->nullable();
+
             $table->timestamps();
         });
     }

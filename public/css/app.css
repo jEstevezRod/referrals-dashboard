@@ -13,3 +13,7 @@
   font-family: "Raleway" !important, sans-serif !important;
 }
 
+.v-image__image v-image__image--contain {
+  background-size: auto !important;
+}
+

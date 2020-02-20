@@ -6,15 +6,18 @@
                 <p class="overline">{{user.email}}</p>
                 <h2 class="mt-10">Projects</h2>
                 <v-row>
-                    <v-col cols="12" sm="8" v-for="project of projects" :key="project.id">
+                    <v-col cols="12" sm="12" v-for="project of projects" :key="project.id">
                         <v-sheet color="grey lighten-3 my-5">
                             <v-container>
                                 <v-row justify="center">
 
-                                    <v-col cols="8">
+                                    <v-col cols="12">
                                         <v-list-item three-line>
                                             <v-list-item-content>
-                                                <div class="overline mb-1">Created at {{new Date(project.createdAt).toLocaleDateString('en-US')}} - Last update {{new Date(project.updatedAt).toLocaleDateString('en-US')}}</div>
+                                                <div class="overline mb-1">Created at {{new
+                                                    Date(project.createdAt).toLocaleDateString('en-US')}} - Last update
+                                                    {{new Date(project.updatedAt).toLocaleDateString('en-US')}}
+                                                </div>
                                                 <v-list-item-title class="display-1 mb-1">
                                                     {{project.name}}
                                                 </v-list-item-title>
@@ -27,16 +30,17 @@
 
                                                     >
                                                         <v-list-item-icon>
-                                                            <v-icon  color="green accent-3">mdi-checkbox-blank-circle</v-icon>
+                                                            <v-icon color="green accent-3">mdi-checkbox-blank-circle
+                                                            </v-icon>
                                                         </v-list-item-icon>
 
                                                         <v-list-item-content>
-                                                            <v-list-item-title >{{domain.domain}} </v-list-item-title>
+                                                            <v-list-item-title>{{domain.domain}}</v-list-item-title>
 
                                                         </v-list-item-content>
 
                                                         <v-list-item-icon>
-                                                            <v-icon  color="blue">mdi-open-in-new</v-icon>
+                                                            <v-icon color="blue">mdi-open-in-new</v-icon>
                                                         </v-list-item-icon>
                                                     </v-list-item>
                                                 </v-list>
@@ -87,13 +91,15 @@
                 token2: '',
                 token: '',
                 code: '',
+                loading: false,
                 options: {
                     headers: {
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Origin': '*'
 
                     }
-                }
+                },
+                proxy: 'https://cors-anywhere.herokuapp.com/'
             }
         },
         methods: {
@@ -112,17 +118,23 @@
             },
             async getData() {
                 this.loading = true;
-                await this.me();
-                await this.getProjects();
-                this.loading = false
+                try {
+                    await this.me();
+                    await this.getProjects();
+                    this.loading = false
+
+                } catch (e) {
+                    this.loading = false;
+                    console.log(e);
+                }
+
 
             },
             me() {
-                fetch('https://api.zeit.co/www/user', {
+                fetch(this.proxy + 'https://api.zeit.co/www/user', {
                     headers: {
                         'Authorization': 'Bearer ' + this.zeitToken,
-                        'Access-Control-Allow-Origin': '*'
-
+                        'Content-Type':  'application/json',
                     },
                     method: 'GET'
                 })
@@ -133,11 +145,10 @@
                     })
             },
             getProjects() {
-                fetch('https://api.zeit.co/v2/projects', {
+                fetch(this.proxy + 'https://api.zeit.co/v2/projects', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer ' + this.zeitToken,
-                        'Access-Control-Allow-Origin': '*'
                     },
                     method: 'GET'
                 })
