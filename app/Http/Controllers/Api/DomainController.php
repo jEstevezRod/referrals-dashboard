@@ -67,11 +67,12 @@ class DomainController extends Controller
         $favicon = $request->file('websiteIcon');
 
         try {
+
             if (!in_array($slug, $directories)) {
                 Storage::disk('public')->makeDirectory($slug);
             }
             $heroUrl = Storage::disk('public')->putFileAs($slug, $hero, 'homeHeroImage.' . $heroExt);
-            $faviconUrl = Storage::disk('public')->putFileAs($slug, $hero, 'favicon.ico');
+            $faviconUrl = Storage::disk('public')->putFileAs($slug, $favicon, 'favicon.ico');
 
         } catch (\Exception $exception) {
             throw $exception;

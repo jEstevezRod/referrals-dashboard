@@ -152,8 +152,6 @@
             save() {
                 let formData = new FormData();
                 for (let [key, value] of Object.entries(this.content)) {
-                    console.log(key)
-                    console.log(value)
                     formData.append(key, value);
                 }
                 this.axios.post('updateDomain', formData, {headers: {'Content-type': 'multipart/form-data'}})

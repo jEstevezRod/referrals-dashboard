@@ -30,12 +30,19 @@
                                 label="Category name"
                                 required
                             />
-                            <v-text-field
-                                filled
-                                v-model="category.img"
+
+
+                            <v-file-input
+                                v-model="category.categoryImg"
+                                color="deep-purple accent-4"
                                 label="Category image"
-                                required
+                                prepend-icon="mdi-paperclip"
                                 filled
+                            />
+                            <v-textarea
+                                filled
+                                v-model="category.description"
+                                label="Description"
                             />
                         </v-col>
                     </v-row>
@@ -75,7 +82,7 @@
         name: "Category",
         data: () => ({
             domainSelected: '',
-            category: {name: '', img: ''}
+            category: {name: '', categoryImg: '', description: ''}
 
         }),
         mounted() {
@@ -92,9 +99,18 @@
         methods: {
             createCategory() {
                 this.category['domain_id'] = this.domainSelected.id;
-                this.$store.dispatch('createCategory', this.category).then((res) => {
-                    console.log(res)
-                })
+                // this.$store.dispatch('createCategory', this.category).then((res) => {
+                //     console.log(res)
+                // })
+
+                let formData = new FormData();
+                for (let [key, value] of Object.entries(this.category)) {
+                    formData.append(key, value);
+                }
+                this.axios.post('addCategory', formData, {headers: {'Content-type': 'multipart/form-data'}})
+                    .then(res => {
+                        console.log(res)
+                    });
             },
             deleteCategory(id) {
                 this.$store.dispatch('deleteCategory', id)
