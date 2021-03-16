@@ -16,7 +16,7 @@ import Transitions from 'vue2-transitions'
 Vue.use(Transitions);
 
 window.Vue = Vue;
-
+console.log('working');
 // Set Vue router
 Vue.router = router;
 Vue.use(VueRouter);
