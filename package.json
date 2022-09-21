@@ -32,6 +32,6 @@
         "vue-localstorage": "^0.6.2",
         "vue-router": "^3.1.5",
         "vue2-transitions": "^0.3.0",
-        "vuetify": "^2.2.11"
+        "vuetify": "^2.6.10"
     }
 }
